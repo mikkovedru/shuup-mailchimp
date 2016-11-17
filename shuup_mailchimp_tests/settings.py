@@ -42,7 +42,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(
             tempfile.gettempdir(),
-            'shuup_stripe_tests.sqlite3'
+            'shuup_mailchimp.sqlite3'
         ),
     }
 }
