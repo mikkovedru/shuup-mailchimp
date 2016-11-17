@@ -1,0 +1,9 @@
+--extra-index-url https://shuup.github.io/pypi/simple/ shuup
+
+beautifulsoup4>=4.0
+coveralls
+pytest>=2.8
+pytest-cov
+pytest-django>=2.9
+mock
+-e .
