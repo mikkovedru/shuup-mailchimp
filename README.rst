@@ -1,7 +1,7 @@
 .. image:: https://travis-ci.org/shuup/shuup-mailchimp.svg?branch=master
     :target: https://travis-ci.org/shuup/shuup-mailchimp
-.. image:: https://coveralls.io/repos/github/shuup/shuup-mailchimp/badge.svg
-    :target: https://coveralls.io/github/shuup/shuup-mailchimp
+.. image:: https://coveralls.io/repos/github/shuup/shuup-mailchimp/badge.svg?branch=master
+    :target: https://coveralls.io/github/shuup/shuup-mailchimp?branch=master
 
 Shuup Mailchimp Integration
 ===========================
