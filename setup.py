@@ -17,6 +17,6 @@ if __name__ == '__main__':
         cmdclass=(shuup_setup_utils.COMMANDS if shuup_setup_utils else {}),
         install_requires=[
             'mailchimp3>=1.0.12,<2',
-            'shuup>=0.4',
+            'shuup>=1.5.0'
         ],
     )

@@ -1,5 +1,4 @@
---extra-index-url https://shuup.github.io/pypi/simple/ shuup
-
+-e git+https://git@github.com/shuup/shuup@v1.5.0#egg=shuup==1.5.0
 beautifulsoup4>=4.0
 coveralls
 pytest>=2.8
