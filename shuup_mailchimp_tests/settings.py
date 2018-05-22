@@ -18,7 +18,6 @@ INSTALLED_APPS = (
     "filer",
     "shuup.core",
     "shuup.front",
-    "shuup.customer_group_pricing",
     "shuup.campaigns",
     "shuup.default_tax",
     "shuup_mailchimp",
