@@ -4,7 +4,6 @@
 #
 # This source code is licensed under the AGPLv3 license found in the
 # LICENSE file in the root directory of this source tree.
-from shuup.core.models import Shop
 
 from shuup_mailchimp.interface.base import ShuupMailchimp
 
@@ -18,7 +17,7 @@ def update_or_create_contact(sender, instance, **kwargs):
     if not instance.marketing_permission:
         return
 
-    for shop in Shop.objects.all():
+    for shop in instance.shops.all():
         add_email_to_list(shop, instance.email, contact=instance)
 
 

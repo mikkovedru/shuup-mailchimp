@@ -8,9 +8,9 @@ import pytest
 import requests
 from django.utils.timezone import now
 from mock import Mock, patch
+
 from shuup import configuration
 from shuup.testing.factories import create_random_person
-
 from shuup_mailchimp.configuration_keys import MC_ENABLED
 from shuup_mailchimp.interface import (
     add_email_to_list, update_or_create_contact
@@ -26,6 +26,7 @@ from shuup_mailchimp_tests.mock_responses import (
 @patch.object(requests, 'put', Mock(side_effect=success_response))
 @patch.object(requests, 'get', Mock(side_effect=raise_on_request))
 def test_add_contact_with_disabled_integration(default_shop, valid_company, valid_test_configuration):
+    valid_company.shops.add(default_shop)
     assert MailchimpContact.objects.count() == 0
     update_or_create_contact(valid_company.__class__, valid_company)
     assert MailchimpContact.objects.count() == 0
@@ -42,6 +43,7 @@ def test_add_contact_with_disabled_integration(default_shop, valid_company, vali
 @patch.object(requests, 'get', Mock(side_effect=raise_on_request))
 def test_add_contact_without_marketing_permission(default_shop, valid_company, valid_test_configuration):
     configuration.set(default_shop, MC_ENABLED, True)
+    valid_company.shops.add(default_shop)
     valid_company.marketing_permission = False
     valid_company.save()
 
@@ -56,7 +58,7 @@ def test_add_contact_without_marketing_permission(default_shop, valid_company, v
 @patch.object(requests, 'get', Mock(side_effect=raise_on_request))
 def test_add_contact_with_enabled_integration(default_shop, valid_company, valid_test_configuration):
     configuration.set(default_shop, MC_ENABLED, True)
-
+    valid_company.shops.add(default_shop)
     assert MailchimpContact.objects.count() == 0
     update_or_create_contact(valid_company.__class__, valid_company)
     mailchimp_contact = MailchimpContact.objects.get(email=valid_company.email)
@@ -68,6 +70,7 @@ def test_add_contact_with_enabled_integration(default_shop, valid_company, valid
 @patch.object(requests, 'put', Mock(side_effect=success_response))
 @patch.object(requests, 'get', Mock(side_effect=raise_on_request))
 def test_add_person_contact_with_name(default_shop, valid_person, valid_test_configuration):
+    valid_person.shops.add(default_shop)
     assert MailchimpContact.objects.count() == 0
     update_or_create_contact(valid_person.__class__, valid_person)
     assert MailchimpContact.objects.count() == 0
@@ -107,6 +110,7 @@ def test_edit_contact_matching_existing_email_no_update(default_shop, valid_test
 @patch.object(requests, 'put', Mock(side_effect=success_response))
 @patch.object(requests, 'get', Mock(side_effect=raise_on_request))
 def test_edit_contact_not_matching_update_related(default_shop, valid_person, valid_test_configuration):
+    valid_person.shops.add(default_shop)
     assert MailchimpContact.objects.count() == 0
     configuration.set(default_shop, MC_ENABLED, True)
     valid_email = "noexist@test.com"

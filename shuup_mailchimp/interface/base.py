@@ -7,19 +7,22 @@
 from __future__ import unicode_literals
 
 import hashlib
+from logging import getLogger
 
 import requests
 import six
 from django.utils.timezone import now
+
 from shuup import configuration
 from shuup.core.models import CompanyContact, PersonContact
 from shuup.utils.analog import LogEntryKind
-
 from shuup_mailchimp.configuration_keys import (
     MC_API, MC_ENABLED, MC_LIST_ID, MC_USERNAME
 )
 from shuup_mailchimp.interface.client import ShuupMailchimpClient
 from shuup_mailchimp.models import MailchimpContact
+
+logger = getLogger(__name__)
 
 
 class ShuupMailchimp(object):
@@ -83,7 +86,6 @@ class ShuupMailchimp(object):
             mailchimp_contact.save()
 
         try:
-
             merge_fields = {}
             if isinstance(contact, PersonContact):
                 merge_fields = {"FNAME": contact.first_name, "LNAME": contact.last_name}
@@ -102,6 +104,7 @@ class ShuupMailchimp(object):
             mailchimp_contact.sent_to_mailchimp = now()
             mailchimp_contact.save()
             return mailchimp_contact
-        except requests.HTTPError:
+        except (requests.RequestException, requests.ConnectionError):
+            logger.exception("Failed to send data to MailChimp")
             mailchimp_contact.add_log_entry(
                 "Unexpected error: Couldn't send email to list.", "client_error", LogEntryKind.ERROR)
