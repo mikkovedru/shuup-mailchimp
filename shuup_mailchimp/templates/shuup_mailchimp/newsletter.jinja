@@ -1,3 +1,4 @@
+{% set gdpr_enabled=(gdpr and gdpr.is_enabled(request)) %}
 <section class="newsletter-lift">
     <h2 class="text-uppercase text-center">{{ title }}</h2>
     <p class="lead text-center">{{ lead }}</p>
@@ -12,12 +13,37 @@
             </div>
             <div class="newsletter-error text-danger"></div>
         </div>
+        {% if gdpr_enabled %}
+            <div class="gdpr-documents text-center">
+                {% for document in gdpr.get_documents(request) %}
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" class="gdpr_doc" name="{{ "gdpr_doc_{}".format(document.id) }}" />
+                        {{ _("I have read and agree to <a href='{}' target='_blank'>{}</a>").format(
+                            url("shuup:cms_page", url=document.url), document.title
+                        )|safe }}
+                    </label>
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </form>
-
 </section>
 
 <script>
 function sendSubscription(form) {
+    var check_gdpr = {% if gdpr_enabled %}true{% else %}false{% endif %};
+
+    if (check_gdpr && $(".gdpr_doc")) {
+        var allAccepted = Array.from(document.getElementsByClassName("gdpr_doc")).map(function (el) {
+            return el.checked;
+        }).filter(function (value) { return !value; });
+        if (allAccepted.length) {
+            $(".newsletter-error").html('<p class="text-danger">' + gettext("You must accept to all terms.") +'</p>');
+            return;
+        }
+    }
+
     $.ajax({
         type: $(form).attr("method"),
         url: form.action,
