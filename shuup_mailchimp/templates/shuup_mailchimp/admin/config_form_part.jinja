@@ -39,13 +39,15 @@
     {{ bs3.field(mailchimp_form["api_key"]) }}
     {{ bs3.field(mailchimp_form["list_id"]) }}
 
-    {% set test_url = url("shuup_admin:mailchimp.configurations_test", shop_pk=shop.pk) %}
-    <button type="submit" class="btn btn-warning center-block" onclick="sendCommand(event, '{{ test_url }}')">
-        <i class="fa fa-check"></i>
-        {% trans %}Test configurations{% endtrans %}
-    </button>
-    <br>
-    <p class="text-center">{% trans %}Please save configuration keys before testing.{% endtrans %}</p>
+    {% if shop and shop.pk %}
+        {% set test_url = url("shuup_admin:mailchimp.configurations_test", shop_pk=shop.pk) %}
+        <button type="submit" class="btn btn-warning center-block" onclick="sendCommand(event, '{{ test_url }}')">
+            <i class="fa fa-check"></i>
+            {% trans %}Test configurations{% endtrans %}
+        </button>
+        <br>
+        <p class="text-center">{% trans %}Please save configuration keys before testing.{% endtrans %}</p>
+    {% endif %}
 {% endcall %}
 
 {% block extra_js %}
