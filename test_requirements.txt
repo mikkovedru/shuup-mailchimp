@@ -1,4 +1,4 @@
--e git+https://git@github.com/shuup/shuup@v1.5.0#egg=shuup==1.5.0
+shuup>=1.6.0,<2
 beautifulsoup4>=4.0
 coveralls
 pytest>=2.8
