@@ -1,7 +1,7 @@
 .. image:: https://travis-ci.org/shuup/shuup-mailchimp.svg?branch=master
     :target: https://travis-ci.org/shuup/shuup-mailchimp
-.. image:: https://coveralls.io/repos/github/shuup/shuup-mailchimp/badge.svg?branch=master
-    :target: https://coveralls.io/github/shuup/shuup-mailchimp?branch=master
+.. image:: https://codecov.io/gh/shuup/shuup-mailchimp/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/shuup/shuup-mailchimp
 
 Shuup Mailchimp Integration
 ===========================
@@ -12,11 +12,18 @@ for the `Shuup <https://shuup.io/>`_ platform.
 Copyright
 ---------
 
-Copyright (C) 2012-2016 by Shoop Commerce Ltd. <contact@shuup.io>
+Copyright (C) 2012-2018 by Shuup Inc. <support@shuup.com>
 
-Shuup is International Registered Trademark & Property of Shoop Commerce Ltd.,
-Business ID: FI24815722, Business Address: Aurakatu 12 B, 20100 Turku,
-Finland.
+Shuup is International Registered Trademark & Property of Shuup Inc.,
+Business Address: 1013 Centre Road, Suite 403-B,
+Wilmington, Delaware 19805,
+United States Of America
+
+License
+-------
+
+Shuup Stripe addon is published under Open Software License version 3.0 (OSL-3.0).
+See the LICENSE file distributed with Shuup.
 
 Running tests
 -------------

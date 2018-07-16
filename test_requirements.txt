@@ -1,8 +1,6 @@
-shuup>=1.6.0,<2
 beautifulsoup4>=4.0
-coveralls
-pytest>=2.8
+pytest>=3.6
 pytest-cov
-pytest-django>=2.9
+pytest-django>=3.0
 mock
 -e .
