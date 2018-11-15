@@ -12,10 +12,7 @@ import shuup.apps
 class AppConfig(shuup.apps.AppConfig):
     name = "shuup_mailchimp"
     provides = {
-        "admin_module": ["shuup_mailchimp.admin:MailchimpAdminModule"],
-        "admin_shop_form_part": [
-            "shuup_mailchimp.admin.forms:ConfigurationFormPart"
-        ],
+        "admin_module": ["shuup_mailchimp.admin_module:MailchimpAdminModule"],
         "xtheme_plugin": ["shuup_mailchimp.plugins:NewsletterPlugin"],
         "front_urls": [
             "shuup_mailchimp.urls:urlpatterns"

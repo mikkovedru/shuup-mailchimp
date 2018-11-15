@@ -9,10 +9,9 @@ from __future__ import unicode_literals
 
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from shuup import configuration
-from shuup.admin.form_part import FormPart, TemplatedFormDef
 from six import iteritems
 
+from shuup import configuration
 from shuup_mailchimp.configuration_keys import (
     MC_API, MC_ENABLED, MC_LIST_ID, MC_USERNAME
 )
@@ -49,21 +48,3 @@ class ConfigurationForm(forms.Form):
             return
         for form_field, conf_key in iteritems(FORM_FIELD_TO_CONF_KEY_MAP):
             configuration.set(self.shop, conf_key, self.cleaned_data.get(form_field))
-
-
-class ConfigurationFormPart(FormPart):
-    priority = 5
-    name = "mailchimp"
-    form = ConfigurationForm
-
-    def get_form_defs(self):
-        yield TemplatedFormDef(
-            name=self.name,
-            form_class=self.form,
-            template_name="shuup_mailchimp/admin/config_form_part.jinja",
-            required=False,
-            kwargs={"shop": self.object}
-        )
-
-    def form_valid(self, form):
-        form["mailchimp"].save()

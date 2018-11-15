@@ -8,9 +8,9 @@
 import pytest
 import requests
 from mock import Mock, patch
+
 from shuup import configuration
 from shuup.testing.factories import create_empty_order
-
 from shuup_mailchimp.configuration_keys import MC_ENABLED
 from shuup_mailchimp.interface import update_or_create_contact_from_order
 from shuup_mailchimp.models import MailchimpContact

@@ -43,7 +43,7 @@ class ShuupMailchimp(object):
         configurations = self._get_configurations_for_client()
         if not all(six.itervalues(configurations)):
             return
-        return ShuupMailchimpClient(configurations["username"], configurations["api_key"])
+        return ShuupMailchimpClient(configurations["api_key"], configurations["username"])
 
     def _get_subscriber_hash(self, email):
         """
@@ -58,7 +58,7 @@ class ShuupMailchimp(object):
     def get_list(self):
         if not (self.list_id and self.client):
             return
-        return self.client.list.get(self.list_id)
+        return self.client.lists.get(self.list_id)
 
     def _is_enabled(self):
         return bool(self.list_id and self.client and configuration.get(self.shop, MC_ENABLED))

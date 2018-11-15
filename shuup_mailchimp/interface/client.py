@@ -7,15 +7,15 @@
 # LICENSE file in the root directory of this source tree.
 from __future__ import unicode_literals
 
-try:
-    from urllib.parse import urljoin
-except ImportError:
-    from urlparse import urljoin
-
 import requests
 from mailchimp3 import MailChimp
 
 from shuup_mailchimp.interface.member import ShuupMember
+
+try:
+    from urllib.parse import urljoin
+except ImportError:
+    from urlparse import urljoin
 
 
 class ShuupMailchimpClient(MailChimp):
