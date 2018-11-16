@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This file is part of Shuup.
+# This file is part of Shuup Mailchimp Addon.
 #
 # Copyright (c) 2012-2018, Shuup Inc. All rights reserved.
 #
@@ -7,17 +7,16 @@
 # LICENSE file in the root directory of this source tree.
 import pytest
 from django.db.models.signals import post_save
-from shuup import configuration
+
 from shuup.core.models import CompanyContact, Order, PersonContact
 from shuup.core.order_creator.signals import order_creator_finished
 from shuup.testing.factories import (
     create_random_company, create_random_person, get_default_shop
 )
-
 from shuup_mailchimp.configuration_keys import (
-    MC_API, MC_CONTACT_SIGNAL_DISPATCH_UID, MC_LIST_ID,
-    MC_ORDER_SIGNAL_DISPATCH_UID, MC_USERNAME
+    MC_CONTACT_SIGNAL_DISPATCH_UID, MC_ORDER_SIGNAL_DISPATCH_UID
 )
+from shuup_mailchimp_tests.utils import ensure_valid_configuration
 
 
 @pytest.fixture()
@@ -49,11 +48,7 @@ def valid_person():
 @pytest.fixture()
 @pytest.mark.django_db()
 def valid_test_configuration():
-    configuration.cache.clear()
-    shop = get_default_shop()
-    configuration.set(shop, MC_API, "some-api-key")
-    configuration.set(shop, MC_USERNAME, "some-username")
-    configuration.set(shop, MC_LIST_ID, "some-list-id")
+    ensure_valid_configuration()
 
 
 def pytest_configure():

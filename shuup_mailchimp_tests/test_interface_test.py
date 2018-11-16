@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This file is part of Shuup.
+# This file is part of Shuup Mailchimp Addon.
 #
 # Copyright (c) 2012-2018, Shuup Inc. All rights reserved.
 #
@@ -7,9 +7,10 @@
 # LICENSE file in the root directory of this source tree.
 import pytest
 import requests
+from mailchimp3.mailchimpclient import MailChimpError
 from mock import Mock, patch
-from shuup import configuration
 
+from shuup import configuration
 from shuup_mailchimp.configuration_keys import MC_LIST_ID
 from shuup_mailchimp.interface import interface_test
 from shuup_mailchimp_tests.mock_responses import (
@@ -28,4 +29,5 @@ def test_with_missing_list_id(default_shop, valid_test_configuration):
     assert interface_test(default_shop) is False
 
     configuration.set(default_shop, MC_LIST_ID, "some-list-id")
-    assert interface_test(default_shop)
+    response = interface_test(default_shop)
+    assert isinstance(response, MailChimpError)  # invalid api key

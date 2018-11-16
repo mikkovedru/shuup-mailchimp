@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-28 19:02+0000\n"
+"POT-Creation-Date: 2018-11-16 14:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,6 +18,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "Mailchimp"
+msgstr ""
+
+msgid "Re-connect Mailchimp"
+msgstr ""
+
+msgid "Connect Mailchimp"
+msgstr ""
+
+msgid "MailChimp"
+msgstr ""
+
+msgid ""
+"Connect your Mailchimp account to Shuup store. Once connected, your "
+"customers can be added to your mailing list."
 msgstr ""
 
 msgid "Mailchimp API key"
@@ -56,7 +70,7 @@ msgstr ""
 msgid "email"
 msgstr ""
 
-msgid "Subscribe Newsletter"
+msgid "Subscribe Newsletter (Mailchimp)"
 msgstr ""
 
 msgid "Title"
@@ -65,7 +79,7 @@ msgstr ""
 msgid "Lead text"
 msgstr ""
 
-msgid "Link title"
+msgid "Submit button text"
 msgstr ""
 
 msgid "Input placeholder text"
@@ -80,15 +94,15 @@ msgstr ""
 msgid ""
 "To enable your integration with Mailchimp, please create a Mailchimp list in "
 "your Mailchimp admin panel\n"
-"        and link it to Shuup. The List ID can be found under \"Settings-"
+"            and link it to Shuup. The List ID can be found under \"Settings-"
 ">List name and defaults\" in the Mailchimp admin panel."
 msgstr ""
 
 msgid ""
 "The second step is to generate an API key for the integration in your "
 "Mailchimp admin panel and add it to the form below.\n"
-"        API key generation can be found under \"Account->Extras->API keys\" "
-"in the Mailchimp admin panel."
+"            API key generation can be found under \"Account->Extras->API keys"
+"\" in the Mailchimp admin panel."
 msgstr ""
 
 msgid ""
@@ -96,13 +110,25 @@ msgid ""
 "it."
 msgstr ""
 
-msgid "Test configurations"
+msgid "Last Connection check"
 msgstr ""
 
-msgid "Please save configuration keys before testing."
+msgid "Last Connection status"
+msgstr ""
+
+msgid "Success"
+msgstr ""
+
+msgid "Failure"
+msgstr ""
+
+msgid "Save and Test Connection"
 msgstr ""
 
 msgid "Unexpected error happened please try again."
+msgstr ""
+
+msgid "The newsletter cannot be shown because Mailchimp is not connected."
 msgstr ""
 
 msgid "I have read and agree to <a href='{}' target='_blank'>{}</a>"

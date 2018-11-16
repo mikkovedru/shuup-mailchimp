@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This file is part of Shuup.
+# This file is part of Shuup Mailchimp Addon.
 #
 # Copyright (c) 2012-2018, Shuup Inc. All rights reserved.
 #
@@ -7,6 +7,7 @@
 # LICENSE file in the root directory of this source tree.
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+
 from shuup.core.models import Contact, Shop
 from shuup.utils.analog import define_log_model
 

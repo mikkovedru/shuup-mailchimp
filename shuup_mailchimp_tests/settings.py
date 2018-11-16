@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This file is part of Shuup.
+# This file is part of Shuup Mailchimp Addon.
 #
 # Copyright (c) 2012-2018, Shuup Inc. All rights reserved.
 #
@@ -17,10 +17,13 @@ INSTALLED_APPS = (
     "easy_thumbnails",
     "filer",
     "shuup.core",
-    "shuup.front",
+    "shuup.admin",
+    "shuup.customer_group_pricing",
     "shuup.campaigns",
+    "shuup.front",
     "shuup.default_tax",
     "shuup_mailchimp",
+    "bootstrap3",  # shuup.admin requirement
 )
 
 MIDDLEWARE_CLASSES = [
@@ -33,7 +36,9 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'shuup.front.middleware.ProblemMiddleware',
+    'shuup.core.middleware.ShuupMiddleware',
     'shuup.front.middleware.ShuupFrontMiddleware',
+    'shuup.admin.middleware.ShuupAdminMiddleware'
 ]
 
 DATABASES = {
@@ -57,6 +62,8 @@ LANGUAGES = [
     ('fi', 'Finnish'),
 ]
 
+USE_TZ = True
+
 PARLER_DEFAULT_LANGUAGE_CODE = "en"
 
 PARLER_LANGUAGES = {
@@ -77,3 +84,6 @@ TEMPLATES = [
         "NAME": "jinja2",
     },
 ]
+
+SHUUP_GET_ADMIN_MODULES_SPEC = ("shuup.admin.module_registry.get_admin_modules")
+SHUUP_ADMIN_SHOP_PROVIDER_SPEC = ("shuup.admin.shop_provider.AdminShopProvider")

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This file is part of Shuup.
+# This file is part of Shuup Mailchimp Addon.
 #
 # Copyright (c) 2012-2018, Shuup Inc. All rights reserved.
 #
@@ -11,6 +11,9 @@ MC_API = "mailchimp:api_key"
 MC_ENABLED = "mailchimp:enabled"
 MC_LIST_ID = "mailchimp:list_id"
 MC_USERNAME = "mailchimp:username"
+
+MC_LAST_CHECK = "mailchimp:last_check"
+MC_CHECK_SUCCESS = "mailchimp:check_success"
 
 # Signal dispatch UIDs
 MC_CONTACT_SIGNAL_DISPATCH_UID = "shuup_mailchimp.contact_update"

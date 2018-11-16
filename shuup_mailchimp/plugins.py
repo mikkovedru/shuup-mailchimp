@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This file is part of Shuup.
+# This file is part of Shuup Mailchimp Addon.
 #
 # Copyright (c) 2012-2018, Shuup Inc. All rights reserved.
 #
@@ -7,20 +7,23 @@
 # LICENSE file in the root directory of this source tree.
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
+
+from shuup.core.shop_provider import get_shop
 from shuup.xtheme import TemplatedPlugin
 from shuup.xtheme.plugins.forms import TranslatableField
 from shuup.xtheme.resources import add_resource
+from shuup_mailchimp.interface import get_connection_info
 
 
 class NewsletterPlugin(TemplatedPlugin):
     identifier = "shuup_mailchimp.newsletter"
-    name = _("Subscribe Newsletter")
+    name = _("Subscribe Newsletter (Mailchimp)")
     template_name = "shuup_mailchimp/newsletter.jinja"
 
     fields = [
         ("title", TranslatableField(label=_("Title"), required=True, initial="")),
         ("lead", TranslatableField(label=_("Lead text"), required=True, initial="")),
-        ("link_title", TranslatableField(label=_("Link title"), required=True, initial="")),
+        ("link_title", TranslatableField(label=_("Submit button text"), required=True, initial="")),
         ("input_placeholder_text", TranslatableField(label=_("Input placeholder text"), required=True, initial="")),
         ("success_message", TranslatableField(label=_("Success message"), required=True, initial="")),
         ("error_message", TranslatableField(label=_("Error message"), required=True, initial="")),
@@ -37,7 +40,10 @@ class NewsletterPlugin(TemplatedPlugin):
         return super(NewsletterPlugin, self).render(context)
 
     def get_context_data(self, context):
+        shop = get_shop(context["request"])
+        cfg = get_connection_info(shop)
         return {
+            "mailchimp_enabled": cfg.get("mailchimp_check_success", False),
             "title": self.get_translated_value("title"),
             "lead": self.get_translated_value("lead"),
             "link_title": self.get_translated_value("link_title"),

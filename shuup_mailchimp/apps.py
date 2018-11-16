@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This file is part of Shuup.
+# This file is part of Shuup Mailchimp Addon.
 #
 # Copyright (c) 2012-2018, Shuup Inc. All rights reserved.
 #
@@ -12,10 +12,7 @@ import shuup.apps
 class AppConfig(shuup.apps.AppConfig):
     name = "shuup_mailchimp"
     provides = {
-        "admin_module": ["shuup_mailchimp.admin:MailchimpAdminModule"],
-        "admin_shop_form_part": [
-            "shuup_mailchimp.admin.forms:ConfigurationFormPart"
-        ],
+        "admin_module": ["shuup_mailchimp.admin_module:MailchimpAdminModule"],
         "xtheme_plugin": ["shuup_mailchimp.plugins:NewsletterPlugin"],
         "front_urls": [
             "shuup_mailchimp.urls:urlpatterns"

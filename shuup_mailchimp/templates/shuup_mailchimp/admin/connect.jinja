@@ -1,0 +1,88 @@
+{% extends "shuup/admin/base.jinja" %}
+{% block content %}
+<div class="container-fluid cancel-container">
+    <div class="content-block">
+        {% if form.show_instructions() %}
+        <div class="row col-sm-10">
+            <p>
+            {% trans -%}
+            To enable your integration with Mailchimp, please create a Mailchimp list in your Mailchimp admin panel
+            and link it to Shuup. The List ID can be found under "Settings->List name and defaults" in the Mailchimp admin panel.
+            {%- endtrans %}
+            </p>
+            <p>
+            {% trans -%}
+            The second step is to generate an API key for the integration in your Mailchimp admin panel and add it to the form below.
+            API key generation can be found under "Account->Extras->API keys" in the Mailchimp admin panel.
+            {%- endtrans  %}
+            </p>
+            <p>
+            {% trans -%}
+            When you have all the configurations saved test your integration and enable it.
+            {%- endtrans  %}
+            </p>
+        </div>
+        {% endif %}
+        <br>
+        <table class="table table-bordered">
+            <tbody>
+            <tr>
+                <td>{% trans %}Last Connection check{% endtrans %}</td>
+                <td>{{ mailchimp_last_check|datetime(format="short") }}</td>
+            </tr>
+            <tr>
+                <td>{% trans %}Last Connection status{% endtrans %}</td>
+                <td>{% if mailchimp_check_success %}{% trans %}Success{% endtrans %}{% else %}{% trans %}Failure{% endtrans %}{% endif %}</td>
+            </tr>
+            </tbody>
+        </table>
+        <form id="mailchimp-settings">
+            {{ bs3.field(form["is_enabled"]) }}
+            {{ bs3.field(form["username"]) }}
+            {{ bs3.field(form["api_key"]) }}
+            {{ bs3.field(form["list_id"]) }}
+
+            {% set url = url("shuup_admin:mailchimp.connect") %}
+            <button type="submit" class="btn btn-warning center-block" id="mailchimp-submit" data-url="{{ url }}">
+                <i class="fa fa-check"></i>
+                {% trans %}Save and Test Connection{% endtrans %}
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function() {
+    $("#mailchimp-submit").on("click", function(e){
+        e.preventDefault();
+        const defaultError = "{% trans %}Unexpected error happened please try again.{% endtrans %}";
+        var url = $(this).data("url");
+        var data = {};
+        $.each($("#mailchimp-settings").serializeArray(), function() {
+            data[this.name] = this.value;
+        });
+        data.csrfmiddlewaretoken = window.ShuupAdminConfig.csrf;
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url,
+            data,
+            success: function(data) {
+                Messages.enqueue({
+                    tags: "success",
+                    text: data.message
+                });
+            },
+            error: function(response) {
+                Messages.enqueue({
+                    tags: "error",
+                    text: response.responseJSON ? response.responseJSON.message : defaultError
+                });
+            }
+        });
+    });
+})();
+</script>
+{% endblock %}

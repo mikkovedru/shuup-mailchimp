@@ -22,7 +22,7 @@ United States Of America
 License
 -------
 
-Shuup Stripe addon is published under Open Software License version 3.0 (OSL-3.0).
+Shuup Mailchimp addon is published under Open Software License version 3.0 (OSL-3.0).
 See the LICENSE file distributed with Shuup.
 
 Running tests

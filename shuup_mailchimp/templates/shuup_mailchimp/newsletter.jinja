@@ -1,4 +1,11 @@
 {% set gdpr_enabled=(gdpr and gdpr.is_enabled(request)) %}
+{% if not mailchimp_enabled %}
+    {% if request.user.is_superuser %}
+    <section class="newsletter-lift">
+        {% trans %}The newsletter cannot be shown because Mailchimp is not connected.{% endtrans %}
+    </section>
+    {% endif %}
+{% else %}
 <section class="newsletter-lift">
     <h2 class="text-uppercase text-center">{{ title }}</h2>
     <p class="lead text-center">{{ lead }}</p>
@@ -32,9 +39,9 @@
 
 <script>
 function sendSubscription(form) {
-    var check_gdpr = {% if gdpr_enabled %}true{% else %}false{% endif %};
+    var checkGDPR = {% if gdpr_enabled %}true{% else %}false{% endif %};
 
-    if (check_gdpr && $(".gdpr_doc")) {
+    if (checkGDPR && $(".gdpr_doc")) {
         var allAccepted = Array.from(document.getElementsByClassName("gdpr_doc")).map(function (el) {
             return el.checked;
         }).filter(function (value) { return !value; });
@@ -59,3 +66,4 @@ function sendSubscription(form) {
     });
 }
 </script>
+{% endif %}
