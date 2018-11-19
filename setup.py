@@ -16,7 +16,6 @@ if __name__ == '__main__':
         entry_points={"shuup.addon": "shuup_mailchimp=shuup_mailchimp"},
         cmdclass=(shuup_setup_utils.COMMANDS if shuup_setup_utils else {}),
         install_requires=[
-            'mailchimp3>=3.0.6,<4',
-            'shuup>=1.6.0,<2'
+            'mailchimp3>=3.0.6,<4'
         ],
     )
