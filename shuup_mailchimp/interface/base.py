@@ -21,7 +21,10 @@ from shuup_mailchimp.configuration_keys import (
     MC_API, MC_ENABLED, MC_LIST_ID, MC_USERNAME
 )
 from shuup_mailchimp.interface.client import ShuupMailchimpClient
-from shuup_mailchimp.models import MailchimpContact
+from shuup_mailchimp.models import (
+    MailchimpContact, MailchimpStatus, MailchimpStatusLog
+)
+from shuup_mailchimp.utils import added_to_mailchimp
 
 logger = getLogger(__name__)
 
@@ -73,14 +76,12 @@ class ShuupMailchimp(object):
         if not self._is_enabled():
             return
 
+        if added_to_mailchimp(email):
+            return  # do not re-add
+
         mailchimp_contact, created = MailchimpContact.objects.get_or_create(
             shop=self.shop, email=email
         )
-        if not contact and mailchimp_contact.sent_to_mailchimp:
-            return
-
-        if contact and mailchimp_contact.contact == contact:
-            return
 
         if contact != mailchimp_contact.contact:
             mailchimp_contact.contact = contact
@@ -104,6 +105,39 @@ class ShuupMailchimp(object):
                 return
             mailchimp_contact.sent_to_mailchimp = now()
             mailchimp_contact.save()
+            MailchimpStatusLog.change_status(email, MailchimpStatus.SUBSCRIBED)
+            return mailchimp_contact
+        except (requests.RequestException, requests.ConnectionError):
+            logger.exception("Failed to send data to MailChimp")
+            mailchimp_contact.add_log_entry(
+                "Unexpected error: Couldn't send email to list.", "client_error", LogEntryKind.ERROR)
+
+    def remove_email_from_list(self, email):
+        if not self._is_enabled():
+            return
+
+        if not added_to_mailchimp(email):
+            return  # do not remove
+
+        mailchimp_contact = MailchimpContact.objects.filter(
+            shop=self.shop, email=email
+        ).first()
+
+        if not mailchimp_contact:
+            return
+
+        try:
+            resp = self.client.shuup_member.update_or_create(
+                self.list_id,
+                self._get_subscriber_hash(email),
+                {"status": "unsubscribed", "email_address": email}
+            )
+            if not (resp and resp.get("id")):
+                mailchimp_contact.add_log_entry(resp.get("title"), "client_error", LogEntryKind.ERROR)
+                return
+            mailchimp_contact.sent_to_mailchimp = None
+            mailchimp_contact.save()
+            MailchimpStatusLog.change_status(email, MailchimpStatus.UNSUBSCRIBED)
             return mailchimp_contact
         except (requests.RequestException, requests.ConnectionError):
             logger.exception("Failed to send data to MailChimp")

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-16 14:29+0000\n"
+"POT-Creation-Date: 2018-12-12 19:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,6 +52,21 @@ msgstr ""
 msgid "Configuration test successful"
 msgstr ""
 
+msgid "no status"
+msgstr ""
+
+msgid "subscribed"
+msgstr ""
+
+msgid "unsubscribed"
+msgstr ""
+
+msgid "cleaned"
+msgstr ""
+
+msgid "pending"
+msgstr ""
+
 msgid "shop"
 msgstr ""
 
@@ -68,6 +83,11 @@ msgid "contact"
 msgstr ""
 
 msgid "email"
+msgstr ""
+
+msgid ""
+"The email that will receive order confirmations and promotional materials "
+"(if permitted)."
 msgstr ""
 
 msgid "Subscribe Newsletter (Mailchimp)"
@@ -89,6 +109,9 @@ msgid "Success message"
 msgstr ""
 
 msgid "Error message"
+msgstr ""
+
+msgid "I want to receive marketing material"
 msgstr ""
 
 msgid ""

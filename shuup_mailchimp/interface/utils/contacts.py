@@ -15,11 +15,9 @@ def update_or_create_contact(sender, instance, **kwargs):
 
     Add's contact email to every configured shop list
     """
-    if not instance.marketing_permission:
-        return
-
+    func = remove_email_from_list if not instance.marketing_permission else add_email_to_list
     for shop in instance.shops.all():
-        add_email_to_list(shop, instance.email, contact=instance)
+        func(shop, instance.email, contact=instance)
 
 
 def update_or_create_contact_from_order(sender, order, *args, **kwargs):
@@ -41,3 +39,8 @@ def add_email_to_list(shop, email, contact=None):
     """
     client = ShuupMailchimp(shop)
     client.add_email_to_list(email, contact=contact)
+
+
+def remove_email_from_list(shop, email, contact=None):
+    client = ShuupMailchimp(shop)
+    client.remove_email_from_list(email)
