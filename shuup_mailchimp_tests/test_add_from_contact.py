@@ -18,7 +18,7 @@ from shuup_mailchimp.interface import (
 )
 from shuup_mailchimp.models import MailchimpContact
 from shuup_mailchimp_tests.mock_responses import (
-    raise_on_request, success_response
+    PostIsNotAllowed, raise_on_request, success_response
 )
 
 
@@ -91,7 +91,8 @@ def test_existing_email_without_contact_update_no_update(default_shop, valid_tes
     configuration.set(default_shop, MC_ENABLED, True)
     valid_email = "noexist@test.com"
     MailchimpContact.objects.create(shop=default_shop, email=valid_email, sent_to_mailchimp=now())
-    add_email_to_list(default_shop, valid_email, contact=None)
+    with pytest.raises(PostIsNotAllowed):
+        add_email_to_list(default_shop, valid_email, contact=None)
 
 
 @pytest.mark.django_db
@@ -103,7 +104,8 @@ def test_edit_contact_matching_existing_email_no_update(default_shop, valid_test
     configuration.set(default_shop, MC_ENABLED, True)
     valid_email = "noexist@test.com"
     MailchimpContact.objects.create(shop=default_shop, email=valid_email, sent_to_mailchimp=now())
-    add_email_to_list(default_shop, valid_email, contact=None)
+    with pytest.raises(PostIsNotAllowed):  # update actually done but testing wont allow it
+        add_email_to_list(default_shop, valid_email, contact=None)
 
 
 @pytest.mark.django_db

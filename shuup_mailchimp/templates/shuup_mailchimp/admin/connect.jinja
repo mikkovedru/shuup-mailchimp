@@ -28,7 +28,7 @@
             <tbody>
             <tr>
                 <td>{% trans %}Last Connection check{% endtrans %}</td>
-                <td>{{ mailchimp_last_check|datetime(format="short") }}</td>
+                <td>{{ mailchimp_last_check|datetime(format="short") if mailchimp_last_check else "-" }}</td>
             </tr>
             <tr>
                 <td>{% trans %}Last Connection status{% endtrans %}</td>

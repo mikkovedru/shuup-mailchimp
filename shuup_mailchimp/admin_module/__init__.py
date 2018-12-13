@@ -7,7 +7,7 @@
 # LICENSE file in the root directory of this source tree.
 from __future__ import unicode_literals
 
-from django.urls import reverse_lazy
+from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from shuup.admin.base import AdminModule, MenuEntry

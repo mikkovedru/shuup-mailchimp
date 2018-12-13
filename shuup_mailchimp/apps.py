@@ -14,6 +14,9 @@ class AppConfig(shuup.apps.AppConfig):
     provides = {
         "admin_module": ["shuup_mailchimp.admin_module:MailchimpAdminModule"],
         "xtheme_plugin": ["shuup_mailchimp.plugins:NewsletterPlugin"],
+        "front_registration_field_provider": [
+            "shuup_mailchimp.providers:MailchimpFieldProvider"
+        ],
         "front_urls": [
             "shuup_mailchimp.urls:urlpatterns"
         ],
@@ -33,3 +36,6 @@ class AppConfig(shuup.apps.AppConfig):
         post_save.connect(update_or_create_contact, sender=CompanyContact, dispatch_uid=MC_CONTACT_SIGNAL_DISPATCH_UID)
         post_save.connect(update_or_create_contact, sender=PersonContact, dispatch_uid=MC_CONTACT_SIGNAL_DISPATCH_UID)
         order_creator_finished.connect(update_or_create_contact_from_order, dispatch_uid=MC_ORDER_SIGNAL_DISPATCH_UID)
+
+        # connect receivers
+        import shuup_mailchimp.receivers  # noqa: F401
