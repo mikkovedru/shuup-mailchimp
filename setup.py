@@ -9,7 +9,7 @@ except ImportError:
 if __name__ == '__main__':
     setuptools.setup(
         name="shuup-mailchimp",
-        version="0.7.8",
+        version="0.8.0",
         description="Shuup Mailchimp Integration",
         packages=setuptools.find_packages(),
         include_package_data=True,
