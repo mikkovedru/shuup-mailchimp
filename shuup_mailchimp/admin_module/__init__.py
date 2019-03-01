@@ -11,7 +11,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from shuup.admin.base import AdminModule, MenuEntry
-from shuup.admin.menu import ADDONS_MENU_CATEGORY
+from shuup.admin.menu import SETTINGS_MENU_CATEGORY
 from shuup.admin.shop_provider import get_shop
 from shuup.admin.utils.permissions import get_default_model_permissions
 from shuup.admin.utils.urls import admin_url
@@ -39,7 +39,8 @@ class MailchimpAdminModule(AdminModule):
                 text=self.name,
                 icon="fa fa-mail",
                 url="shuup_admin:mailchimp.connect",
-                category=ADDONS_MENU_CATEGORY
+                category=SETTINGS_MENU_CATEGORY,
+                subcategory="other_settings"
             )
         ]
 
