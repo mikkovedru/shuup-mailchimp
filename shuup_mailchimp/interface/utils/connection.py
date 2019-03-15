@@ -13,7 +13,6 @@ from shuup_mailchimp.configuration_keys import MC_CHECK_SUCCESS, MC_LAST_CHECK
 
 
 def get_connection_info(shop):
-    configuration.cache.clear()
     ts = configuration.get(shop, MC_LAST_CHECK)
     if ts:
         ts = to_aware(datetime.datetime.fromtimestamp(ts))
