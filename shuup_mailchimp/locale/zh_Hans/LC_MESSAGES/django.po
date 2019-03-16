@@ -1,0 +1,160 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+# Translators:
+# Jiechao Li <jiechao.li@sesamechat.com>, 2019
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-12-12 19:24+0000\n"
+"PO-Revision-Date: 2019-03-12 23:41+0000\n"
+"Last-Translator: Jiechao Li <jiechao.li@sesamechat.com>, 2019\n"
+"Language-Team: Chinese (Mandarin) (https://www.transifex.com/shuup/teams/55306/cmn/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: cmn\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Mailchimp"
+msgstr "通过电子邮件订阅 RSS 的在线工具"
+
+msgid "Re-connect Mailchimp"
+msgstr "重新连接Mailchimp"
+
+msgid "Connect Mailchimp"
+msgstr "连接Mailchimp"
+
+msgid "MailChimp"
+msgstr "通过电子邮件订阅 RSS 的在线工具"
+
+msgid ""
+"Connect your Mailchimp account to Shuup store. Once connected, your "
+"customers can be added to your mailing list."
+msgstr "连接你的邮箱帐户到Shuup商店。一旦连接，您的客户可以添加到您的邮件列表。"
+
+msgid "Mailchimp API key"
+msgstr "MailChimp API 钥匙"
+
+msgid "Mailchimp list id"
+msgstr "Mailchimp列表id"
+
+msgid "Enabled"
+msgstr "启动"
+
+msgid "Mailchimp username"
+msgstr "Mailchimp 用户名"
+
+msgid "Testing configuration failed"
+msgstr "测试配置失败"
+
+msgid "Configuration test successful"
+msgstr "配置测试成功"
+
+msgid "no status"
+msgstr "无状态"
+
+msgid "subscribed"
+msgstr "订购"
+
+msgid "unsubscribed"
+msgstr "无订购"
+
+msgid "cleaned"
+msgstr "清理"
+
+msgid "pending"
+msgstr "即将发生的"
+
+msgid "shop"
+msgstr "商店"
+
+msgid "updated"
+msgstr "更新"
+
+msgid "created"
+msgstr "创建"
+
+msgid "sent to mailchimp"
+msgstr "发送给MailChimp"
+
+msgid "contact"
+msgstr "联系人"
+
+msgid "email"
+msgstr "电子邮件"
+
+msgid ""
+"The email that will receive order confirmations and promotional materials "
+"(if permitted)."
+msgstr "收到订单确认和促销材料的电子邮件(如果允许的话)。"
+
+msgid "Subscribe Newsletter (Mailchimp)"
+msgstr "订阅电子报（Mailchimp）"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Lead text"
+msgstr "引文"
+
+msgid "Submit button text"
+msgstr "提交按钮文本"
+
+msgid "Input placeholder text"
+msgstr "输入占位符文本"
+
+msgid "Success message"
+msgstr "成功信息"
+
+msgid "Error message"
+msgstr "错误信息"
+
+msgid "I want to receive marketing material"
+msgstr "我想要收到营销材料"
+
+msgid ""
+"To enable your integration with Mailchimp, please create a Mailchimp list in your Mailchimp admin panel\n"
+"            and link it to Shuup. The List ID can be found under \"Settings->List name and defaults\" in the Mailchimp admin panel."
+msgstr ""
+"为了使你的集成与梅尔黑猩猩，请创建一个梅尔黑猩猩列表在您的梅尔黑猩猩管理面板，并链接到锁。列表ID可以在邮件黑猩猩管理面板中的“Settings-&gt；list名称和缺省值”下找到。"
+
+msgid ""
+"The second step is to generate an API key for the integration in your Mailchimp admin panel and add it to the form below.\n"
+"            API key generation can be found under \"Account->Extras->API keys\" in the Mailchimp admin panel."
+msgstr ""
+"第二步是为您的邮件黑猩猩管理面板中的集成生成一个API密钥，并将其添加到下面的表单中。在管理面板中的“Account-&gt；Extras-&gt；api键”下可以找到API密钥生成。"
+
+msgid ""
+"When you have all the configurations saved test your integration and enable "
+"it."
+msgstr "保存所有配置后，测试集成并启用它。"
+
+msgid "Last Connection check"
+msgstr "最后一次连接检查"
+
+msgid "Last Connection status"
+msgstr "最后连接状态"
+
+msgid "Success"
+msgstr "成功"
+
+msgid "Failure"
+msgstr "失败"
+
+msgid "Save and Test Connection"
+msgstr "保存和测试连接"
+
+msgid "Unexpected error happened please try again."
+msgstr "发生意外错误，请再试一次。"
+
+msgid "The newsletter cannot be shown because Mailchimp is not connected."
+msgstr "通讯无法显示，因为邮件Mailchimp没有连接。"
+
+msgid "I have read and agree to <a href='{}' target='_blank'>{}</a>"
+msgstr "I have read and agree to <a href='{}' target='_blank'>{}</a>"
