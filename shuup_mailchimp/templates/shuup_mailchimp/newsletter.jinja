@@ -20,7 +20,7 @@
             </div>
             <div class="newsletter-error text-danger"></div>
         </div>
-        {% if gdpr_enabled %}
+        {% if gdpr_enabled and not skip_consent_on_submit %}
             <div class="gdpr-documents text-center">
                 {% for document in gdpr.get_documents(request) %}
                 <div class="checkbox">
@@ -39,7 +39,7 @@
 
 <script>
 function sendSubscription(form) {
-    var checkGDPR = {% if gdpr_enabled %}true{% else %}false{% endif %};
+    var checkGDPR = {% if gdpr_enabled and not skip_consent_on_submit %}true{% else %}false{% endif %};
 
     if (checkGDPR && $(".gdpr_doc")) {
         var allAccepted = Array.from(document.getElementsByClassName("gdpr_doc")).map(function (el) {

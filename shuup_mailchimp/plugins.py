@@ -5,6 +5,7 @@
 #
 # This source code is licensed under the OSL-3.0 license found in the
 # LICENSE file in the root directory of this source tree.
+from django import forms
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
@@ -27,6 +28,13 @@ class NewsletterPlugin(TemplatedPlugin):
         ("input_placeholder_text", TranslatableField(label=_("Input placeholder text"), required=True, initial="")),
         ("success_message", TranslatableField(label=_("Success message"), required=True, initial="")),
         ("error_message", TranslatableField(label=_("Error message"), required=True, initial="")),
+        (
+            "skip_consent_on_submit",
+            forms.BooleanField(
+                label=_("Do not require consent when GDPR is activated."),
+                required=False
+            )
+        )
     ]
 
     def render(self, context):
@@ -50,4 +58,5 @@ class NewsletterPlugin(TemplatedPlugin):
             "input_placeholder_text": self.get_translated_value("input_placeholder_text"),
             "success_message": self.get_translated_value("success_message"),
             "error_message": self.get_translated_value("error_message"),
+            "skip_consent_on_submit": self.config.get("skip_consent_on_submit", False),
         }
