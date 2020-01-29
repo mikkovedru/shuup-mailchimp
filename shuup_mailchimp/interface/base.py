@@ -50,11 +50,11 @@ class ShuupMailchimp(object):
 
     def _get_subscriber_hash(self, email):
         """
-        Get hash for subscriber email for updating list member
+        Get hash for subscriber email for updating list member.
 
         From Mailchimp API documentation: subscriber_hash is MD5
         hash of the lowercase version of the list member's email
-        address
+        address.
         """
         return hashlib.md5(email.lower().encode('utf-8')).hexdigest()
 
@@ -68,10 +68,10 @@ class ShuupMailchimp(object):
 
     def add_email_to_list(self, email, contact=None):
         """
-        Add given email to configured Mailchimp list
+        Add given email to configured Mailchimp list.
 
-        :param email: email to add list
-        :param contact: optional associated Shuup contact
+        :param email: email to add list.
+        :param contact: optional associated Shuup contact.
         """
         if not self._is_enabled():
             return
@@ -108,9 +108,9 @@ class ShuupMailchimp(object):
             MailchimpStatusLog.change_status(email, MailchimpStatus.SUBSCRIBED)
             return mailchimp_contact
         except (requests.RequestException, requests.ConnectionError):
-            logger.exception("Failed to send data to MailChimp")
+            logger.exception("Error! Failed to send data to MailChimp.")
             mailchimp_contact.add_log_entry(
-                "Unexpected error: Couldn't send email to list.", "client_error", LogEntryKind.ERROR)
+                "Error! Unexpected error: Couldn't send email to list.", "client_error", LogEntryKind.ERROR)
 
     def remove_email_from_list(self, email):
         if not self._is_enabled():
@@ -140,6 +140,6 @@ class ShuupMailchimp(object):
             MailchimpStatusLog.change_status(email, MailchimpStatus.UNSUBSCRIBED)
             return mailchimp_contact
         except (requests.RequestException, requests.ConnectionError):
-            logger.exception("Failed to send data to MailChimp")
+            logger.exception("Error! Failed to send data to MailChimp.")
             mailchimp_contact.add_log_entry(
-                "Unexpected error: Couldn't send email to list.", "client_error", LogEntryKind.ERROR)
+                "Error! Unexpected error: Couldn't send email to list.", "client_error", LogEntryKind.ERROR)

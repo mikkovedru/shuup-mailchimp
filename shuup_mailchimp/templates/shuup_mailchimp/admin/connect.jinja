@@ -57,7 +57,7 @@
 (function() {
     $("#mailchimp-submit").on("click", function(e){
         e.preventDefault();
-        const defaultError = "{% trans %}Unexpected error happened please try again.{% endtrans %}";
+        const defaultError = "{% trans %}Unexpected error happened, please try again.{% endtrans %}";
         var url = $(this).data("url");
         var data = {};
         $.each($("#mailchimp-settings").serializeArray(), function() {

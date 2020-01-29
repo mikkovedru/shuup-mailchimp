@@ -37,7 +37,7 @@ def test_interface_with_response(request):
 
     if not interface_test(shop):
         configuration.set(shop, MC_CHECK_SUCCESS, False)
-        return JsonResponse({"message": _("Testing configuration failed")}, status=400)
+        return JsonResponse({"message": _("Testing configuration failed.")}, status=400)
 
     configuration.set(shop, MC_CHECK_SUCCESS, True)
-    return JsonResponse({"message": _("Configuration test successful")})
+    return JsonResponse({"message": _("Configuration test was successful.")})

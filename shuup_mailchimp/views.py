@@ -19,7 +19,7 @@ def subscribe_newsletter(request):
             email = request.POST.get("email")
             validate_email(email)
             add_email_to_list(request.shop, email)
-            return JsonResponse({"message": "success"}, status=200)
+            return JsonResponse({"message": "Success!"}, status=200)
         except ValidationError:
-            return JsonResponse({"message": "error"}, status=400)
-    return JsonResponse({"message": "error"}, status=400)
+            return JsonResponse({"message": "Error!"}, status=400)
+    return JsonResponse({"message": "Error!"}, status=400)
